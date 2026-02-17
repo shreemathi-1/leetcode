@@ -1,9 +1,9 @@
-// Last updated: 2/17/2026, 9:27:51 PM
+// Last updated: 2/17/2026, 9:28:55 PM
 1class Solution 
 2{
 3    public boolean isSubsequence(String s, String t)
 4    {
-5        if(s=="" || s==null || s.length()==0) return true;
+5        if(s.equals("") || s==null || s.length()==0) return true;
 6        int index =0;
 7        for(int it = 0;it < t.length();it++)
 8        {
