@@ -1,4 +1,4 @@
-// Last updated: 2/17/2026, 7:18:13 PM
+// Last updated: 2/17/2026, 7:20:46 PM
 1class Solution 
 2{
 3    public boolean isPalindrome(String s)
