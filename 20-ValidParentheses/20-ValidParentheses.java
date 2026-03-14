@@ -1,11 +1,12 @@
-// Last updated: 2/13/2026, 3:18:08 PM
+// Last updated: 3/14/2026, 6:52:33 AM
 class Solution {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         Map<Character, Character> mapping = new HashMap<>();
-        mapping.put(')', '(');
-        mapping.put('}', '{');
-        mapping.put(']', '[');
+        mapping.put(')','(');
+        mapping.put('}','{'); 
+        mapping.put(']','[');  
+
 
         for (char c : s.toCharArray()) {
             if (mapping.containsValue(c)) {
@@ -16,7 +17,6 @@ class Solution {
                 }
             }
         }
-
-        return stack.isEmpty();        
+        return stack.isEmpty();
     }
 }
