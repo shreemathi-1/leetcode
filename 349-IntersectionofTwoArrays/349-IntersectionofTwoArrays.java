@@ -1,27 +1,32 @@
-// Last updated: 3/16/2026, 11:29:52 AM
+// Last updated: 3/16/2026, 12:18:01 PM
 1class Solution 
 2{
-3    public int[] intersection(int[] nums1, int[] nums2) 
-4    {       
-5        HashSet<Integer> set = new HashSet<>();
-6        HashSet<Integer> resSet = new HashSet<>();
-7        for(int num : nums1)
-8        {
-9            set.add(num);
-10        }
-11        for(int num : nums2)
-12        {
-13            if(set.contains(num))
-14            {
-15               resSet.add (num);
-16            }
-17        }
-18       int[] arr = new int[resSet.size()];
-19       int i =0;
-20       for(int ele : resSet)
-21       {
-22            arr[i++] = ele;
-23       }
-24       return arr;
-25    }
-26}
+3    public String intToRoman(int num) 
+4    {
+5       
+6        StringBuilder res = new StringBuilder();
+7        Map<Integer,String> roman = new LinkedHashMap<>();
+8        roman.put(1000,"M");
+9        roman.put(900,"CM");
+10         roman.put(500,"D");
+11         roman.put(400,"CD");
+12          roman.put(100,"C");
+13            roman.put(90,"XC");
+14            roman.put(50,"L");
+15        roman.put(40,"XL");
+16         roman.put(10,"X");
+17          roman.put(9,"IX"); 
+18           roman.put(5,"V");   
+19             roman.put(4,"IV");
+20              roman.put(1,"I");
+21         for(int key : roman.keySet())
+22         {
+23            while(num>=key)
+24            {
+25                res.append(roman.get(key));
+26                num -= key;
+27            }
+28         }        
+29    return res.toString();
+30    }
+31}
