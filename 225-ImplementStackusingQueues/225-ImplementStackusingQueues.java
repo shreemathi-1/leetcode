@@ -1,4 +1,4 @@
-// Last updated: 3/18/2026, 11:44:09 AM
+// Last updated: 3/18/2026, 11:56:10 AM
 1class MyQueue {
 2
 3    Stack<Integer> st1 ;
@@ -10,47 +10,38 @@
 9    
 10    public void push(int x) 
 11    {
-12        st1.push(x);
-13    }
-14    
-15    public int pop() 
-16    {
-17        if(st2.isEmpty())
+12        while(!st1.isEmpty())
+13        {
+14            st2.push(st1.pop());
+15        }
+16        st1.push(x);
+17        while(!st2.isEmpty())
 18        {
-19            while(!st1.isEmpty())
-20            {
-21                st2.push(st1.pop());
-22            }
-23            
-24        }
-25       
-26            return st2.pop();
-27        
-28    }
-29    
-30    public int peek() {
-31        if(st2.isEmpty())
-32        {
-33        
-34            while(!st1.isEmpty())
-35            {
-36                st2.push(st1.pop());
-37            }
-38            
-39        }
-40        return st2.peek();
-41    }
-42    
-43    public boolean empty() {
-44        return st1.isEmpty() && st2.isEmpty();
-45    }
-46}
-47
-48/**
-49 * Your MyQueue object will be instantiated and called as such:
-50 * MyQueue obj = new MyQueue();
-51 * obj.push(x);
-52 * int param_2 = obj.pop();
-53 * int param_3 = obj.peek();
-54 * boolean param_4 = obj.empty();
-55 */
+19            st1.push(st2.pop());
+20        }
+21    }
+22    
+23    public int pop() 
+24    {
+25        
+26            return st1.pop();  
+27    }
+28    
+29    public int peek() {
+30        
+31        return st1.peek();
+32    }
+33    
+34    public boolean empty() {
+35        return st1.isEmpty() ;
+36    }
+37}
+38
+39/**
+40 * Your MyQueue object will be instantiated and called as such:
+41 * MyQueue obj = new MyQueue();
+42 * obj.push(x);
+43 * int param_2 = obj.pop();
+44 * int param_3 = obj.peek();
+45 * boolean param_4 = obj.empty();
+46 */
