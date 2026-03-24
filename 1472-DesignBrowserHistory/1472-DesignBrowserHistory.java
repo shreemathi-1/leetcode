@@ -1,50 +1,32 @@
-// Last updated: 3/24/2026, 2:12:38 PM
-1class BrowserHistory {
-2    class Node
-3    {
-4        String url;
-5        Node prev,next;
-6        Node(String url)
-7        {
-8            this.url = url;
-9            prev = next = null;
-10        }
-11    }
-12   Node cur;
-13    public BrowserHistory(String homepage) {
-14        cur = new Node(homepage);
-15    }
-16    
-17    public void visit(String url) {
-18        Node nn = new Node(url);
-19        cur.next = nn;
-20        nn.prev = cur;
-21        cur =nn;
-22    }
-23    
-24    public String back(int steps) {
-25        while(cur.prev !=null && steps>0)
-26        {
-27            cur = cur.prev;
-28            steps--;
-29        }
-30        return cur.url;
-31    }
-32    
-33    public String forward(int steps) {
-34        while(cur.next !=null && steps>0)
-35        {
-36            cur = cur.next;
-37            steps--;
-38        }
-39        return cur.url;
-40    }
-41}
-42
-43/**
-44 * Your BrowserHistory object will be instantiated and called as such:
-45 * BrowserHistory obj = new BrowserHistory(homepage);
-46 * obj.visit(url);
-47 * String param_2 = obj.back(steps);
-48 * String param_3 = obj.forward(steps);
-49 */
+// Last updated: 3/24/2026, 2:45:21 PM
+1/**
+2 * Definition for singly-linked list.
+3 * public class ListNode {
+4 *     int val;
+5 *     ListNode next;
+6 *     ListNode() {}
+7 *     ListNode(int val) { this.val = val; }
+8 *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+9 * }
+10 */
+11class Solution {
+12    public ListNode oddEvenList(ListNode head) {
+13        if(head == null || head.next == null)
+14        {
+15            return head;
+16        }
+17        ListNode odd = head;
+18        ListNode even = odd.next;
+19        ListNode evenHead = even;
+20        
+21        while(odd !=null && odd.next != null && even != null && even.next != null)
+22        {
+23            odd.next = even.next;
+24          odd = odd.next;
+25          even.next = odd.next;
+26          even = even.next;
+27        }
+28         odd.next = evenHead;
+29          return head;
+30    }
+31}
