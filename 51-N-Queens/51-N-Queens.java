@@ -1,4 +1,4 @@
-// Last updated: 3/26/2026, 11:39:11 AM
+// Last updated: 3/26/2026, 11:39:22 AM
 class Solution {
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> result = new ArrayList<>();
