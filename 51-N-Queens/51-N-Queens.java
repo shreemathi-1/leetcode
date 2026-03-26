@@ -1,59 +1,27 @@
-// Last updated: 3/26/2026, 11:39:22 AM
-class Solution {
-    public List<List<String>> solveNQueens(int n) {
-        List<List<String>> result = new ArrayList<>();
-
-        char[][] board =  new char[n][n];
-        for(int i=0;i < n ; i++){
-            Arrays.fill(board[i],'.');
-
-        }
-        solve(0,n,board,result);
-
-        return result;
-    }
-    public void solve ( int row, int n, char[][] board, List<List<String>> result){
-        if(row==n){
-            List<String> temp = new ArrayList<>();
-            for(int i=0;i<n ;i ++){
-                temp.add(new  String(board[i]));
-            }
-            result.add(temp);
-            return;
-        }
-
-        for(int col=0; col<n ; col++){
-            if(isSafe(row,col,n,board,result)){
-                board[row][col]='Q';
-
-               solve(row+1,n,board,result); 
-               board[row][col]='.';
-            }
-        }
-    }
-
-    public boolean isSafe(int row,int col,int n,char[][] board,List<List<String>> result){
-
-        //column
-        for(int i=0; i<row;i++){
-            if(board[i][col]=='Q'){
-                return false;
-            }
-        }
-        // upper left diagonal
-        for(int i=row-1 ,j=col-1 ;i>=0  && j>=0;i--,j--){
-            if(board[i][j]=='Q'){
-                return false;
-            }
-        }
-
-
-        // lower left diagonal
-        for(int i=row-1,j=col+1;i>=0 && j<n;i--,j++){
-            if(board[i][j]=='Q'){
-                return false;
-            }
-        }
-        return true;
-    }
-}
+// Last updated: 3/26/2026, 12:24:51 PM
+1class Solution 
+2{
+3    public ArrayList<String> res = new ArrayList<>();
+4
+5    public void gen(int op , int cl,String s,int n )
+6    {
+7        if(s.length() == 2*n)
+8        {
+9            res.add(s);
+10            return;
+11        }
+12        if(op<n)
+13        {
+14            gen(op+1,cl,s+"(",n);
+15        }
+16        if(cl<op)
+17        {
+18            gen(op,cl+1,s+")",n);
+19        }
+20    }    
+21    public List<String> generateParenthesis(int n) 
+22    {
+23        gen(0,0,"",n);
+24        return res;
+25    }
+26}
