@@ -1,63 +1,60 @@
-// Last updated: 3/28/2026, 4:07:16 PM
+// Last updated: 3/28/2026, 11:15:22 PM
 1class Solution 
 2{
-3    public List<List<String>> res = new ArrayList<>();
-4    public boolean isSafe(char[][] board,int row ,int col)
+3    public ArrayList<List<String>> res = new ArrayList<>();
+4    public boolean isSafe(char[][] board,int row,int col)
 5    {
-6        for(int i=0;i<row;i++)
+6        for(int i =0;i<board.length;i++)
 7        {
 8            if(board[i][col] == 'Q')
 9            {
 10                return false;
 11            }
-12            for(int j=0;j<board[row].length;j++)
-13            {
-14                if(board[i][j] == 'Q')
-15                {
-16                    if(Math.abs(row-i) == Math.abs(col - j))
-17                    {
-18                        return false;
-19                    }
-20                    else
-21                    {
-22                        break;
-23                    }
-24                }
-25                
-26            }
-27        }
-28        return true;
-29    }
-30    public void backtrack(char[][] board,int row)
-31    {
-32        if(row == board.length)
-33        {
-34            ArrayList<String> l = new ArrayList<>();
-35            for(int i =0;i<board.length;i++)
-36            {
-37                l.add(new String(board[i]));
-38            }
-39            res.add(l);
-40            return;
-41        }
-42        for(int j =0;j<board[row].length;j++)
-43        {
-44            if( isSafe(board,row,j))
-45            {
-46                board[row][j] = 'Q';
-47                backtrack(board,row+1);
-48                board[row][j] = '.';
-49            }
-50        }
-51    }
-52    public List<List<String>> solveNQueens(int n) 
-53    {
-54        char[][] board = new char[n][n];
-55        for(int i =0;i<n;i++)
-56        {
-57            Arrays.fill(board[i],'.');
-58        }
-59        backtrack(board,0);
-60        return res;
-61    }
-62}
+12            
+13            for(int j=0;j<board[row].length;j++)
+14            {
+15                if(board[i][j] == 'Q')
+16                {
+17                    if(Math.abs(row - i) == Math.abs(col - j))
+18                    {
+19                        return false;
+20                    }
+21                }
+22            }    
+23        }
+24        
+25        return true;
+26    }
+27    public void backtrack(char[][] board,int row)
+28    {
+29        if(row == board.length)
+30        {
+31            ArrayList<String> l = new ArrayList<>();
+32            for(int i =0;i<board.length;i++)
+33            {
+34               l.add(new String(board[i])); 
+35            }
+36            res.add(l);
+37            return;
+38        }
+39        for(int j =0;j<board[row].length;j++)
+40        {
+41            if(isSafe(board,row,j))
+42            {
+43                board[row][j] = 'Q';
+44                backtrack(board,row+1);
+45                board[row][j] = '.';
+46            }
+47        }
+48    }
+49    public List<List<String>> solveNQueens(int n) 
+50    {
+51        char[][] board = new char[n][n];
+52        for(int i =0;i<n;i++)
+53        {
+54            Arrays.fill(board[i],'.');
+55        }
+56        backtrack(board,0);
+57        return res;
+58    }
+59}
