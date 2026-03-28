@@ -1,60 +1,83 @@
-// Last updated: 3/28/2026, 11:15:22 PM
-1class Solution 
-2{
-3    public ArrayList<List<String>> res = new ArrayList<>();
-4    public boolean isSafe(char[][] board,int row,int col)
-5    {
-6        for(int i =0;i<board.length;i++)
-7        {
-8            if(board[i][col] == 'Q')
-9            {
-10                return false;
-11            }
-12            
-13            for(int j=0;j<board[row].length;j++)
-14            {
-15                if(board[i][j] == 'Q')
-16                {
-17                    if(Math.abs(row - i) == Math.abs(col - j))
-18                    {
-19                        return false;
-20                    }
-21                }
-22            }    
-23        }
-24        
-25        return true;
-26    }
-27    public void backtrack(char[][] board,int row)
-28    {
-29        if(row == board.length)
-30        {
-31            ArrayList<String> l = new ArrayList<>();
-32            for(int i =0;i<board.length;i++)
-33            {
-34               l.add(new String(board[i])); 
-35            }
-36            res.add(l);
-37            return;
-38        }
-39        for(int j =0;j<board[row].length;j++)
-40        {
-41            if(isSafe(board,row,j))
-42            {
-43                board[row][j] = 'Q';
-44                backtrack(board,row+1);
-45                board[row][j] = '.';
-46            }
-47        }
-48    }
-49    public List<List<String>> solveNQueens(int n) 
-50    {
-51        char[][] board = new char[n][n];
-52        for(int i =0;i<n;i++)
-53        {
-54            Arrays.fill(board[i],'.');
-55        }
-56        backtrack(board,0);
-57        return res;
-58    }
-59}
+// Last updated: 3/28/2026, 11:15:47 PM
+class Solution {
+     List<List<String>> l ;
+    public List<List<String>> solveNQueens(int n) {
+        l = new ArrayList<>() ;
+        int[][] dp = new int[n][n] ;
+        HashSet<Integer> set = new HashSet<>(); // coloums k liye 
+
+        for( int i = 0 ; i < n ; i++){
+            dp[0][i] = 1 ;
+            set.add(i);
+            helper( 1 , n , set , dp ) ;
+            set.remove(i) ;
+            dp[0][i] = 0 ;
+
+        }
+
+        return l ;
+
+    }
+
+    private void helper( int row , int n , HashSet<Integer> set , int[][] dp){
+       if( row == n ){
+        // convert into string nd add
+        converter(dp , n ) ;
+        return ;
+       }
+
+        for( int i = 0 ; i < n ; i++){
+            if( dp[row][i] == 0 && !set.contains(i) && daigonal( row , i , dp)){
+            dp[row][i] = 1 ;
+            set.add(i);
+            helper( row +1 , n , set , dp ) ;
+            set.remove(i) ;
+            dp[row ][i] = 0 ;
+            }
+        }
+
+        return ;
+    }
+
+    private boolean daigonal ( int row , int col , int[][] dp){
+        int r = row ;
+        int c = col ;
+
+        while( r >= 0 && c >= 0 ){
+            if( dp[r][c] == 0 ){
+                r--;
+                c--;
+            }else{
+                return false ;
+            }
+        }
+
+        r = row ;
+        c = col ;
+
+        while( r >= 0 && c < dp.length  ){
+            if(dp[r][c] == 1 ) return false ;
+            r--;
+            c++;
+        }
+        return true ;
+    }
+
+    private void converter( int[][] dp , int n ){
+        List<String> ll = new ArrayList<>() ;
+        for( int i = 0 ; i < n ; i++ ){
+            StringBuilder sb =  new StringBuilder() ;
+            for( int j = 0 ; j < n ; j++){
+                if(dp[i][j] == 0 ){
+                    sb.append('.') ;
+                }else{
+                    sb.append('Q');
+                }
+            }
+            ll.add(sb.toString()) ;
+        }
+
+      if (!l.contains(ll)) 
+       l.add(ll);
+    }
+}
