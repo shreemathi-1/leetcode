@@ -1,9 +1,9 @@
-// Last updated: 3/29/2026, 11:19:51 PM
+// Last updated: 3/29/2026, 11:20:29 PM
 1class Solution 
 2{
 3    public int lengthOfLongestSubstring(String s) 
 4    {
-5        if(s.length() ==1) return 1;
+5        // if(s.length() ==1) return 1;
 6        int max =0,len =0,i=0,start =0;
 7        HashSet<Character> set = new HashSet<>();
 8        while(i < s.length())
