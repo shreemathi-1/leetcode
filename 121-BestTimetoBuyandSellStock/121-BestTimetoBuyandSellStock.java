@@ -1,4 +1,4 @@
-// Last updated: 4/2/2026, 7:08:51 PM
+// Last updated: 4/2/2026, 7:09:06 PM
 1class Solution 
 2{
 3    public int maxProfit(int[] prices) 
