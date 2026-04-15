@@ -1,17 +1,12 @@
-// Last updated: 2/13/2026, 3:16:00 PM
-class Solution {
-    public int thirdMax(int[] nums) {
-        Set<Integer> arr = new HashSet<>();
-        for(int i = 0 ; i <nums.length;i++)
-        {
-            arr.add(nums[i]);
-        }
-        Integer[] arr2=arr.toArray(new Integer[0]);
-            Arrays.sort(arr2);
-         if(arr2.length==3) return arr2[0];
-         else if(arr2.length<3) return arr2[arr2.length-1];
-         //else if (arr2.length >=4) return
-         return arr2[arr2.length-3];
-    } 
-
-}
+// Last updated: 4/15/2026, 8:33:36 PM
+1class Solution {
+2    public int thirdMax(int[] nums) {
+3        int count = 0;
+4        Arrays.sort(nums);
+5        for(int i = nums.length - 1; i > 0; i--){
+6            if(nums[i] != nums[i - 1]) count++;
+7            if(count == 2) return nums[i - 1];
+8        }
+9        return nums[nums.length - 1];
+10    }
+11}
