@@ -1,4 +1,4 @@
-// Last updated: 4/15/2026, 9:06:37 PM
+// Last updated: 4/15/2026, 9:09:20 PM
 1class Solution 
 2{
 3    public String longestCommonPrefix(String[] strs) 
@@ -11,8 +11,12 @@
 10            while(strs[i].indexOf(pre) != 0)
 11            {
 12                pre = pre.substring(0,pre.length()-1);
-13            }
-14        }
-15        return pre;
-16    }
-17}
+13                if(pre.isEmpty())
+14                {
+15                    return "";
+16                }
+17            }
+18        }
+19        return pre;
+20    }
+21}
