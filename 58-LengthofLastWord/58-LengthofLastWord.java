@@ -1,21 +1,9 @@
-// Last updated: 2/18/2026, 9:23:20 PM
+// Last updated: 4/18/2026, 5:47:06 PM
 1class Solution 
 2{
-3    public boolean isSubsequence(String s, String t)
+3    public int lengthOfLastWord(String s) 
 4    {
-5        if(s =="" || s.length() == 0) return true;
-6        int index = 0;
-7        for(int it = 0;it<t.length();it++)
-8        {
-9            if( s.charAt(index) == t.charAt(it))
-10            {
-11                index++;
-12            }
-13            if(index == s.length())
-14            {
-15                return true;
-16            }
-17        }
-18        return false;
-19    }    
-20}        
+5        String[] arr = s.split("\\s+");
+6        return arr[arr.length-1].length();
+7    }
+8}
