@@ -1,4 +1,4 @@
-// Last updated: 5/6/2026, 11:23:17 AM
+// Last updated: 5/6/2026, 11:44:23 AM
 1/**
 2 * Definition for singly-linked list.
 3 * public class ListNode {
@@ -11,22 +11,18 @@
 10 */
 11class Solution {
 12    public ListNode oddEvenList(ListNode head) {
-13        if(head == null || head.next == null)
-14        {
-15            return head;
-16        }
-17        ListNode odd = head;
-18        ListNode even = odd.next;
-19        ListNode evenHead = even;
-20        
-21        while( even != null && even.next != null)
-22        {
-23            odd.next = even.next;
-24          odd = odd.next;
-25          even.next = odd.next;
-26          even = even.next;
-27        }
-28         odd.next = evenHead;
-29          return head;
-30    }
-31}
+13        if(head == null || head.next == null) 
+14            return head;
+15        ListNode odd = head,even = head.next;
+16        ListNode evenHead = even;
+17        while(even != null && even.next != null)
+18        {
+19            odd.next = even.next;
+20            odd = odd.next;
+21            even.next = odd.next;
+22            even = even.next;
+23        }
+24        odd.next = evenHead;
+25        return head;
+26    }
+27}
