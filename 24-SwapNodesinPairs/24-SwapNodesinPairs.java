@@ -1,47 +1,47 @@
-// Last updated: 5/11/2026, 9:37:42 AM
-1/**
-2 * Your MinStack object will be instantiated and called as such:
-3 * MinStack obj = new MinStack();
-4 * obj.push(val);
-5 * obj.pop();
-6 * int param_3 = obj.top();
-7 * int param_4 = obj.getMin();
-8 */
-9 
-10 class MinStack {
-11  Stack<Integer> minSt ;
-12      Stack<Integer> st;
-13    public MinStack() 
-14    {
-15        minSt = new Stack<>();
-16         st = new Stack<>();
-17    }
-18    
-19    public void push(int val) 
-20    {
-21        st.push(val);
-22        if(minSt.isEmpty() || val<= minSt.peek())
-23        {
-24          minSt.push( val );
-25        }           
-26    }
-27    
-28    public void pop() 
-29    {
-30       int num=  st.pop();
-31       if(num == minSt.peek())
-32       {
-33        minSt.pop();
-34       }
-35    }
-36    
-37    public int top() {
-38        return  st.peek();
-39    }
-40    
-41    public int getMin() {
-42       return  minSt.peek();
-43    }
-44}
-45
-46
+// Last updated: 5/11/2026, 9:38:48 AM
+1class MyQueue {
+2
+3    Stack<Integer> st1 ;
+4    Stack<Integer> st2;
+5    public MyQueue() {
+6        st1 = new Stack<>();
+7        st2 = new Stack<>();
+8    }
+9    
+10    public void push(int x) 
+11    {
+12        while(!st1.isEmpty())
+13        {
+14            st2.push(st1.pop());
+15        }
+16        st1.push(x);
+17        while(!st2.isEmpty())
+18        {
+19            st1.push(st2.pop());
+20        }
+21    }
+22    
+23    public int pop() 
+24    {
+25        
+26            return st1.pop();  
+27    }
+28    
+29    public int peek() {
+30        
+31        return st1.peek();
+32    }
+33    
+34    public boolean empty() {
+35        return st1.isEmpty() ;
+36    }
+37}
+38
+39/**
+40 * Your MyQueue object will be instantiated and called as such:
+41 * MyQueue obj = new MyQueue();
+42 * obj.push(x);
+43 * int param_2 = obj.pop();
+44 * int param_3 = obj.peek();
+45 * boolean param_4 = obj.empty();
+46 */
