@@ -1,26 +1,25 @@
-// Last updated: 5/25/2026, 9:35:55 PM
-1/* The isBadVersion API is defined in the parent class VersionControl.
-2      boolean isBadVersion(int version); */
-3
-4public class Solution extends VersionControl {
-5    public int firstBadVersion(int n) {
-6
-7        int low = 1;
-8        int high = n;
-9
-10        int mid = 0;
-11        int ans = 0;
-12
-13        while (low <= high) {
-14            mid = low + (high - low) / 2;
-15            if (isBadVersion(mid)) {
-16                ans = mid;
-17                high = mid - 1;
-18
-19            } else {
-20                low = mid + 1;
-21            }
-22        }
-23        return ans;
-24    }
-25}
+// Last updated: 5/25/2026, 9:38:41 PM
+1class Solution 
+2{
+3    public int findPeakElement(int[] nums) 
+4    {
+5        int n = nums.length;
+6        int l =0;
+7        int r = n-1;
+8        int mid =0;
+9        while(l<r)
+10        {  
+11            mid = l+ (r-l) /2;             
+12            if(nums[mid] > nums[mid+1])
+13            {
+14                r = mid ;
+15            }
+16            else
+17            {
+18                l = mid +1;
+19            }
+20
+21        }
+22        return l;
+23    }
+24}
