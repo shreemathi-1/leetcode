@@ -1,20 +1,15 @@
-// Last updated: 5/25/2026, 9:13:12 PM
+// Last updated: 5/25/2026, 9:14:24 PM
 1class Solution 
 2{
-3   
-4    public int fib(int n) 
-5    {
-6        if(n==0) return 0;
-7        if(n==1) return 1;
-8        int f1 = 0;
-9        int f2 =1;
-10        int f3 = 0;
-11        for(int i =2;i<=n;i++)
-12        {
-13            f3 = f1 + f2;
-14            f1 = f2;
-15            f2 = f3;
-16        }
-17        return f2;
-18    }
-19}
+3    public int climbStairs(int n) 
+4    {
+5        int[] dp = new int[n+1];
+6        dp[0]=1;
+7        dp[1] =1;
+8        for(int i =2;i<n+1;i++)
+9        {
+10            dp[i]= dp[i-1] + dp[i-2];
+11        }
+12        return dp[n];
+13    }
+14}
