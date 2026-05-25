@@ -1,27 +1,27 @@
-// Last updated: 5/25/2026, 9:03:22 PM
+// Last updated: 5/25/2026, 9:04:25 PM
 1class Solution 
 2{
-3    public int next(int n)
-4    {
-5        int rem = 0,sum =0;
-6        while(n > 0)
-7        {
-8            rem= n%10;
-9            sum += rem*rem;
-10            n /= 10;
-11        }
-12        return sum;
-13    }
-14    public boolean isHappy(int n) 
-15    {
-16        int slow = n;
-17        int fast = n;
-18        do
-19        {
-20            slow = next(slow);
-21            fast = next(next(fast));
-22        }while(slow != fast);
-23        return slow ==1;
-24        
+3    public int[] intersection(int[] nums1, int[] nums2) 
+4    {       
+5        HashSet<Integer> set = new HashSet<>();
+6        HashSet<Integer> resSet = new HashSet<>();
+7        for(int num : nums1)
+8        {
+9            set.add(num);
+10        }
+11        for(int num : nums2)
+12        {
+13            if(set.contains(num))
+14            {
+15               resSet.add (num);
+16            }
+17        }
+18       int[] arr = new int[resSet.size()];
+19       int i =0;
+20       for(int ele : resSet)
+21       {
+22            arr[i++] = ele;
+23       }
+24       return arr;
 25    }
 26}
