@@ -1,24 +1,22 @@
-// Last updated: 5/25/2026, 9:07:16 PM
-1class Solution 
-2{
-3    public int subarraySum(int[] nums, int k) 
-4    {
-5        int c =0;
-6        int preSum =0;
-7        HashMap<Integer,Integer> map = new HashMap<>();
-8        map.put(0,1);
-9        for(int i =0;i<nums.length;i++)
-10        {
-11            preSum += nums[i];
-12            int remove = preSum - k;
-13            if(map.containsKey(remove))
-14            {
-15                c += map.get(remove);
-16             
+// Last updated: 5/25/2026, 9:09:19 PM
+1class Solution {
+2    public int longestConsecutive(int[] nums) {
+3        HashSet<Integer> st = new HashSet<>();
+4        for (int num : nums) {
+5            st.add(num);
+6        }
+7        int maxStreak = 0;
+8        for (int num : st) {
+9            if (!st.contains(num - 1)) {
+10                int currNum = num;
+11                int currStreak = 1;
+12                while (st.contains(currNum + 1)) {
+13                    currStreak++;
+14                    currNum++;
+15                }
+16                maxStreak = Math.max(maxStreak, currStreak);
 17            }
-18               map.put(preSum,map.getOrDefault(preSum,0)+1);
-19        }
-20
-21        return c;
-22    }
-23}
+18        }
+19        return maxStreak;
+20    }
+21}
