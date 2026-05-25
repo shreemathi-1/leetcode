@@ -1,21 +1,27 @@
-// Last updated: 5/25/2026, 9:02:19 PM
-1class Solution {
-2    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-3        int[] nextGreater = new int[10001];
-4        Stack<Integer> stack = new Stack<>();
-5
-6        for (int i = nums2.length - 1; i >= 0; i--) {
-7            while (!stack.isEmpty() && stack.peek() <= nums2[i]) {
-8                stack.pop();
-9            }
-10            nextGreater[nums2[i]] = stack.isEmpty() ? -1 : stack.peek();
-11            stack.push(nums2[i]);
-12        }
-13
-14        for (int i = 0; i < nums1.length; i++) {
-15            nums1[i] = nextGreater[nums1[i]];
-16        }
-17
-18        return nums1;
-19    }
-20}
+// Last updated: 5/25/2026, 9:03:22 PM
+1class Solution 
+2{
+3    public int next(int n)
+4    {
+5        int rem = 0,sum =0;
+6        while(n > 0)
+7        {
+8            rem= n%10;
+9            sum += rem*rem;
+10            n /= 10;
+11        }
+12        return sum;
+13    }
+14    public boolean isHappy(int n) 
+15    {
+16        int slow = n;
+17        int fast = n;
+18        do
+19        {
+20            slow = next(slow);
+21            fast = next(next(fast));
+22        }while(slow != fast);
+23        return slow ==1;
+24        
+25    }
+26}
