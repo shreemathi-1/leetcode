@@ -1,15 +1,16 @@
-// Last updated: 5/25/2026, 9:34:12 PM
-1public class Solution extends GuessGame {
-2    public int guessNumber(int n) {
-3        if (n == 1) return 1;
-4        int low = 1, high = n;
-5        while (low <= high){
-6            int mid = low + (high - low) / 2;
-7            int check = guess(mid);
-8            if (check == 0) return mid;
-9            else if (check == 1) low = mid + 1;
-10            else high = mid - 1;
-11        }
-12        return -1;
-13    }
-14}
+// Last updated: 5/25/2026, 9:35:37 PM
+1/* The isBadVersion API is defined in the parent class VersionControl.
+2      boolean isBadVersion(int version); */
+3public class Solution extends VersionControl {
+4    public int firstBadVersion(int n) {
+5        int low = 0;
+6        int high = n;
+7        while(low<=high){
+8            int mid = low + (high-low)/2;
+9            if(isBadVersion(mid)==true && isBadVersion(mid-1)==false)   return mid;
+10            else if(isBadVersion(mid)==false ) low = mid+1;
+11            else high= mid;
+12        }     
+13        return -1;
+14    }
+15}
