@@ -1,25 +1,20 @@
-// Last updated: 5/25/2026, 9:11:56 PM
-1class Solution
+// Last updated: 5/25/2026, 9:13:12 PM
+1class Solution 
 2{
-3    public int[] twoSum(int[] numbers, int target)
-4    {
-5        int l = 0;
-6        int r = numbers.length-1;
-7        while(l<r)
-8        {
-9            int sum = numbers[l]+ numbers[r];
-10            if(sum == target)
-11            {
-12                return new int[]{l+1,r+1};
-13            }
-14            else if(sum > target)
-15            {
-16                r--;
-17            }
-18            else {
-19                l++;
-20            }
-21        }
-22return new int[]{-1,-1}; 
-23    }
-24}
+3   
+4    public int fib(int n) 
+5    {
+6        if(n==0) return 0;
+7        if(n==1) return 1;
+8        int f1 = 0;
+9        int f2 =1;
+10        int f3 = 0;
+11        for(int i =2;i<=n;i++)
+12        {
+13            f3 = f1 + f2;
+14            f1 = f2;
+15            f2 = f3;
+16        }
+17        return f2;
+18    }
+19}
