@@ -1,30 +1,26 @@
-// Last updated: 5/25/2026, 9:18:52 PM
+// Last updated: 5/25/2026, 9:23:27 PM
 1class Solution {
-2    public void backtrack(int[] nums, int start, List<List<Integer>> result) {
-3        if (start == nums.length) {
-4            List<Integer> current = new ArrayList<>();
-5            for (int num : nums) {
-6                current.add(num);
-7            }
-8            result.add(current);
-9            return;
-10        }
-11        for (int i = start; i < nums.length; i++) {
-12            swap(nums, start, i);
-13            backtrack(nums, start + 1, result);
-14            swap(nums, start, i); // backtrack
-15        }
-16    }
-17
-18    private void swap(int[] nums, int i, int j) {
-19        int temp = nums[i];
-20        nums[i] = nums[j];
-21        nums[j] = temp;
-22    }
-23
-24    public List<List<Integer>> permute(int[] nums) {
-25        List<List<Integer>> result = new ArrayList<>();
-26        backtrack(nums, 0, result);
-27        return result;
-28    }
-29}
+2    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+3        List<List<Integer>> result = new ArrayList<>();
+4        backtrack(candidates, target, 0, new ArrayList<>(), result, 0);
+5        return result;
+6    }
+7    
+8    private void backtrack(int[] candidates, int target, int start, 
+9                          List<Integer> current, List<List<Integer>> result, int sum) {
+10        if (sum == target) {
+11            result.add(new ArrayList<>(current));
+12            return;
+13        }
+14        
+15        if (sum > target) {
+16            return;
+17        }
+18
+19        for (int i = start; i < candidates.length; i++) {
+20            current.add(candidates[i]);
+21            backtrack(candidates, target, i, current, result, sum + candidates[i]);
+22            current.remove(current.size() - 1);
+23        }
+24    }
+25}
