@@ -1,27 +1,17 @@
-// Last updated: 5/25/2026, 9:16:12 PM
-1class Solution 
-2{
-3    public ArrayList<String> res = new ArrayList<>();
-4
-5    public void gen(int op , int cl,String s,int n )
-6    {
-7        if(s.length() == 2*n)
-8        {
-9            res.add(s);
-10            return;
-11        }
-12        if(op<n)
-13        {
-14            gen(op+1,cl,s+"(",n);
-15        }
-16        if(cl<op)
-17        {
-18            gen(op,cl+1,s+")",n);
-19        }
-20    }    
-21    public List<String> generateParenthesis(int n) 
-22    {
-23        gen(0,0,"",n);
-24        return res;
-25    }
-26}
+// Last updated: 5/25/2026, 9:17:49 PM
+1class Solution {
+2    public List<List<Integer>> subsets(int[] nums) {
+3        List<List<Integer>> outer = new ArrayList<>();
+4        outer.add(new ArrayList<>());
+5        
+6        for(int num : nums){
+7            int n = outer.size();
+8            for(int i = 0; i < n; i++){
+9                List<Integer> internal = new ArrayList<>(outer.get(i));
+10                internal.add(num);
+11                outer.add(internal); 
+12            }
+13        }
+14        return outer;
+15    }
+16}
