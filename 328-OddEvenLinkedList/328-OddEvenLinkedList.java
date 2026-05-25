@@ -1,22 +1,19 @@
-// Last updated: 5/25/2026, 9:23:53 PM
+// Last updated: 5/25/2026, 9:25:44 PM
 1class Solution {
-2    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-3        List<List<Integer>> result = new ArrayList<>();
-4        backtrack(candidates, target, 0, new ArrayList<>(), result, 0);
-5        return result;
-6    }
-7    private void backtrack(int[] candidates, int target, int start, 
-8                          List<Integer> current, List<List<Integer>> result, int sum) {
-9        if (sum == target) {
-10            result.add(new ArrayList<>(current));
-11            return;
-12        }
-13        if (sum > target) 
-14            return;
-15        for (int i = start; i < candidates.length; i++) {
-16            current.add(candidates[i]);
-17            backtrack(candidates, target, i, current, result, sum + candidates[i]);
-18            current.remove(current.size() - 1);
-19        }
-20    }
-21}
+2    public int search(int[] nums, int target) {
+3        int n = nums.length;
+4        int l =0;
+5        int r = n-1;
+6        int mid =0;
+7        while(l <= r){
+8            mid = l + (r-l)/2;
+9            if(nums[mid] == target)
+10                return mid;
+11            else if(nums[mid] < target)
+12                l = mid+1;
+13            else
+14                r = mid -1;
+15        }
+16        return -1;
+17    }
+18}
