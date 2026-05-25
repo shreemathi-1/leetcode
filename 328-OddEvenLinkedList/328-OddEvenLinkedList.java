@@ -1,22 +1,27 @@
-// Last updated: 5/25/2026, 9:09:19 PM
-1class Solution {
-2    public int longestConsecutive(int[] nums) {
-3        HashSet<Integer> st = new HashSet<>();
-4        for (int num : nums) {
-5            st.add(num);
-6        }
-7        int maxStreak = 0;
-8        for (int num : st) {
-9            if (!st.contains(num - 1)) {
-10                int currNum = num;
-11                int currStreak = 1;
-12                while (st.contains(currNum + 1)) {
-13                    currStreak++;
-14                    currNum++;
-15                }
-16                maxStreak = Math.max(maxStreak, currStreak);
-17            }
-18        }
-19        return maxStreak;
-20    }
-21}
+// Last updated: 5/25/2026, 9:10:42 PM
+1class Solution 
+2{
+3    public int[] topKFrequent(int[] nums, int k) 
+4    {
+5        LinkedHashMap<Integer,Integer> map = new LinkedHashMap<>();  
+6          
+7
+8        for(int i =0;i<nums.length;i++)
+9        {
+10            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+11        }
+12       
+13        List<Map.Entry<Integer, Integer>> list =
+14                new ArrayList<>(map.entrySet());
+15
+16        list.sort((a, b) -> b.getValue() - a.getValue());
+17
+18        int[] result = new int[k];
+19        for (int i = 0; i < k; i++) {
+20            result[i] = list.get(i).getKey();
+21        }
+22
+23        return result;
+24    }
+25}
+26
