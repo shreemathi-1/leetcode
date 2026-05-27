@@ -1,4 +1,4 @@
-// Last updated: 5/27/2026, 11:49:40 AM
+// Last updated: 5/27/2026, 12:22:19 PM
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -15,40 +15,19 @@
 14 * }
 15 */
 16class Solution {
-17    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-18        List<List<Integer>> ans = new ArrayList<>();
-19        Queue<TreeNode> q = new LinkedList<>();
-20        if(root == null)
-21            return ans;
-22        q.add(root);
-23        boolean ltr = true;
-24        while(!q.isEmpty())
-25        {
-26            int size = q.size();
-27             List<Integer> l = new ArrayList<>();
-28            for(int i =0;i<size;i++)
-29            {
-30                TreeNode node = q.poll();
-31                if(ltr)
-32                {
-33                    l.add(node.val);
-34                }
-35                else
-36                {
-37                    l.add(0,node.val);
-38                }
-39                if(node.left !=null)
-40                {
-41                    q.add(node.left);
-42                }
-43                if(node.right != null)
-44                {
-45                    q.add(node.right);
-46                }   
-47            }
-48          ans.add(l);
-49          ltr = !ltr; 
-50        }  
-51        return ans;  
-52    }
-53}
+17    public int sumNumbers(TreeNode root) {
+18       return sum(root,0);  
+19    }
+20    int sum(TreeNode root, int current)
+21    {
+22        if(root == null)
+23            return 0;
+24
+25        current = current*10 + root.val;    
+26        if(root.left == null && root.right==null)
+27        {
+28            return current;
+29        }  
+30        return sum(root.left,current) + sum(root.right,current);
+31    }
+32}
