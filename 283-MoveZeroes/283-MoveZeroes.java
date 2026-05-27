@@ -1,23 +1,17 @@
-// Last updated: 4/5/2026, 11:53:49 AM
-1class Solution 
-2{
-3    public void moveZeroes(int[] nums) 
-4    {
-5        int j =0;
-6        for(int i =0;i<nums.length;i++)
-7        {
-8            if(nums[i] != 0 )
-9            {
-10                if(i !=j)
-11                {
-12                    nums[j] = nums[i];
-13                }
-14                j++;
-15            }
-16        }
-17        for(int i =j;i<nums.length;i++)
-18        {
-19            nums[i] = 0;
-20        }
-21    }
-22}
+// Last updated: 5/27/2026, 7:47:20 AM
+1class Solution {
+2    public void moveZeroes(int[] nums) {
+3        int j =0;
+4        for(int i =0;i<nums.length;i++)
+5        {
+6            if(nums[i] != 0 )
+7            {
+8                nums[j++] = nums[i];
+9            }
+10        }
+11        for( int i =j;i<nums.length;i++)
+12        {
+13            nums[i] = 0;
+14        }
+15    }
+16}
