@@ -1,4 +1,4 @@
-// Last updated: 4/1/2026, 6:40:14 PM
+// Last updated: 5/28/2026, 10:37:19 AM
 1class Solution 
 2{
 3    public int[] twoSum(int[] nums, int target) 
@@ -7,7 +7,7 @@
 6        for(int i =0;i<nums.length;i++)
 7        {
 8            int diff = target - nums[i];
-9            if(!map.keySet().contains(diff))
+9            if(!map.containsKey(diff))
 10            {
 11                map.put(nums[i],i);
 12            }
