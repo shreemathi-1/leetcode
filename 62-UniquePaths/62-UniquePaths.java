@@ -1,24 +1,15 @@
-// Last updated: 2/13/2026, 3:17:22 PM
-class Solution 
-{
-    public int uniquePaths(int m, int n) 
-    {
-        int[][] dp = new int[m+1][n+1];
-        dp[1][1] = 1;
-        for(int i = 1;i<=m;i++)
-        {
-            for(int j =1;j<=n;j++)
-            {
-                if(i==1 && j==1)
-                {
-                    continue;
-                }
-                else
-                {
-                    dp[i][j] = dp[i-1][j] + dp[i][j-1];
-                }
-            }
-        }
-        return dp[m][n];
-    }
-}
+// Last updated: 6/1/2026, 4:03:58 PM
+1class Solution {
+2    public int uniquePaths(int m, int n) {
+3        int[] dp = new int[n];
+4        Arrays.fill(dp,1);
+5        for(int i =1;i<m;i++)
+6        {
+7            for(int j =1;j<n;j++)
+8            {
+9                dp[j] = dp[j] + dp[j-1];
+10            }
+11        }
+12        return dp[n-1];
+13    }
+14}
