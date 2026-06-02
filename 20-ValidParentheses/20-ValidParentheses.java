@@ -1,28 +1,30 @@
-// Last updated: 6/2/2026, 8:34:03 PM
-1class Solution {
-2    public boolean isValid(String s) {
-3        Stack<Character> st = new Stack<>();
-4        for(char ch : s.toCharArray())
-5        {
-6            if(ch == '(' || ch == '{' || ch == '[')
-7            {
-8                st.push(ch);
-9            }
-10            else
+// Last updated: 6/2/2026, 8:52:10 PM
+1class Solution 
+2{
+3    public int longestValidParentheses(String s) 
+4    {
+5        Stack<Integer> st = new Stack<>();
+6        st.push(-1);
+7        int maxLen = 0;
+8        for(int i =0;i<s.length();i++)
+9        {
+10            if(s.charAt(i) == '(')
 11            {
-12                if(st.isEmpty())
-13                {
-14                    return false;
-15                }
-16                char top = st.pop();
-17                if(ch == ')' && top != '(' ||
-18                ch == ']' && top != '[' ||
-19                 ch == '}' && top != '{')
-20                 {
-21                    return false;
-22                 }
-23            }
-24        }
-25        return st.isEmpty();
-26    }
-27}
+12                st.push(i);
+13            }
+14            else
+15            {
+16                st.pop();
+17                if(st.isEmpty())
+18                {
+19                    st.push(i);
+20                }
+21                else
+22                {
+23                    maxLen= Math.max(maxLen, i - st.peek());
+24                }
+25            }
+26        }
+27        return maxLen;
+28    }
+29}
