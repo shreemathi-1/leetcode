@@ -1,30 +1,38 @@
-// Last updated: 6/2/2026, 8:52:10 PM
-1class Solution 
-2{
-3    public int longestValidParentheses(String s) 
-4    {
-5        Stack<Integer> st = new Stack<>();
-6        st.push(-1);
-7        int maxLen = 0;
-8        for(int i =0;i<s.length();i++)
-9        {
-10            if(s.charAt(i) == '(')
-11            {
-12                st.push(i);
-13            }
-14            else
-15            {
-16                st.pop();
-17                if(st.isEmpty())
-18                {
-19                    st.push(i);
-20                }
-21                else
-22                {
-23                    maxLen= Math.max(maxLen, i - st.peek());
-24                }
-25            }
-26        }
-27        return maxLen;
-28    }
-29}
+// Last updated: 6/2/2026, 9:33:34 PM
+1class Solution {
+2    public int evalRPN(String[] tokens) {
+3        Stack<Integer> st = new Stack<>();
+4        int a, b;
+5        for(String val : tokens)
+6        {
+7           
+8            switch(val)
+9            {
+10                    case "+":
+11                      b =  st.pop();
+12                 a = st.pop();
+13                        st.push(a+b);
+14                        break;
+15                    case "-":
+16                      b =st.pop();
+17                 a = st.pop();
+18                    st.push(a-b);
+19                    break;
+20                    case "*":
+21                      b =  st.pop();
+22                 a = st.pop();
+23                    st.push(a*b);
+24                    break;
+25                    case "/":
+26                     b =  st.pop();
+27                a =  st.pop();
+28                    st.push(a/b);
+29                    break;    
+30                    default:
+31                    st.push(Integer.parseInt(val) );
+32                
+33            }
+34        }
+35        return st.pop();
+36    }
+37}
