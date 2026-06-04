@@ -1,4 +1,4 @@
-// Last updated: 3/9/2026, 2:41:32 PM
+// Last updated: 6/4/2026, 10:30:32 PM
 1class Solution 
 2{
 3    static boolean isVowel(char ch)
@@ -12,27 +12,24 @@
 11    }
 12    public String reverseVowels(String s) 
 13    {
-14        char[] ch = s.toCharArray();
-15        int left =0;
-16        int right =ch.length-1;
-17        while(left<right)
-18        {
-19             while( left<right && !isVowel(ch[left]))
-20            {
-21               left++;
-22            }
-23            while( left<right &&  !isVowel(ch[right]))
-24            {
-25                right--;
-26            }
-27
-28            char temp = ch[left];
-29            ch[left] = ch[right];
-30            ch[right] = temp;
-31            left++;
-32            right--;
-33
-34        }
-35        return new String(ch);
-36    }
-37}
+14       char[] arr = s.toCharArray();
+15       int l=0,r=arr.length-1;
+16       while(l < r)
+17       {
+18            while( l<r && ! isVowel(arr[l]))
+19            {
+20                l++;
+21            }
+22            while(l<r && !isVowel(arr[r]))
+23            {
+24                r--;
+25            }
+26            char temp = arr[l];
+27            arr[l] = arr[r];
+28            arr[r] = temp;
+29            l++;
+30            r--;
+31       }
+32       return new String(arr);
+33    }
+34}
