@@ -1,4 +1,4 @@
-// Last updated: 3/24/2026, 8:38:57 PM
+// Last updated: 6/5/2026, 9:27:44 AM
 1/**
 2 * Definition for singly-linked list.
 3 * public class ListNode {
@@ -10,51 +10,29 @@
 9 * }
 10 */
 11class Solution {
-12
-13    public ListNode reverseList(ListNode head){
-14        ListNode curr = head;
-15        ListNode prev = null;
-16        ListNode nxt = head;
-17        while(curr != null){
-18            nxt = curr.next;
-19            curr.next = prev;
-20            prev = curr;
-21            curr = nxt;
-22        }
-23
-24        return prev;
-25    }
-26
-27    public ListNode reverseKGroup(ListNode head, int k) {
-28        
-29        ListNode temp = head;
-30        ListNode KthNode = head;
-31        ListNode dummy = new ListNode();
-32        ListNode prev = dummy;
-33        ListNode nxtNode = head;
-34
-35        while( KthNode != null){
-36            int i=0;
-37            KthNode = temp;
-38
-39            while(KthNode != null && i<k-1){
-40                KthNode = KthNode.next;
-41                i++;
-42            }
-43
-44            if(KthNode == null){
-45                prev.next = temp;
-46            }
-47            else{
-48                nxtNode = KthNode.next;
-49                KthNode.next = null;
-50                prev.next = reverseList(temp);
-51                prev = temp;
-52                temp = nxtNode;
-53            }
-54        }
-55
-56        return dummy.next;
-57
-58    }
-59}
+12    public ListNode reverseKGroup(ListNode head, int k) {
+13        ListNode temp = head;
+14        int c =0;
+15        while(temp != null)
+16        {
+17            temp = temp.next;
+18           c++;
+19        }
+20        if(c < k)
+21        {
+22            return head;
+23        }
+24        int i=0;
+25        ListNode cur = head , prev = null,next = null;
+26        while(i<k )
+27        {
+28            next = cur.next;
+29            cur.next = prev;
+30            prev = cur;
+31            cur = next;
+32            i++;
+33        }
+34        head.next = reverseKGroup(cur,k);
+35        return prev;
+36    }
+37}
