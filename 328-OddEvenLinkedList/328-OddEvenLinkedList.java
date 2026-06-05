@@ -1,23 +1,27 @@
-// Last updated: 5/25/2026, 9:40:50 PM
-1class Solution {
-2    public int search(int[] nums, int target) {
-3        int low = 0, high = nums.length - 1;
-4        while (low <= high) {
-5            int mid = (low + high) / 2;
-6            if (nums[mid] == target) 
-7                return mid;
-8            if (nums[low] <= nums[mid]) {
-9                if (nums[low] <= target && target < nums[mid]) 
-10                    high = mid - 1;
-11                 else 
-12                    low = mid + 1;
-13            } else {
-14                if (nums[mid] < target && target <= nums[high]) 
-15                    low = mid + 1;
-16                 else 
-17                    high = mid - 1;  
-18            }
-19        }
-20        return -1;
-21    }
-22}
+// Last updated: 6/5/2026, 11:44:50 AM
+1/**
+2 * Definition for singly-linked list.
+3 * public class ListNode {
+4 *     int val;
+5 *     ListNode next;
+6 *     ListNode() {}
+7 *     ListNode(int val) { this.val = val; }
+8 *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+9 * }
+10 */
+11class Solution {
+12    public ListNode oddEvenList(ListNode head) {
+13        if(head == null) return null;
+14        ListNode odd = head, even = head.next;
+15        ListNode evenHead = even;
+16        while(even != null && even.next != null)
+17        {
+18            odd.next = even.next;
+19            odd = odd.next;
+20            even.next = odd.next;
+21            even = even.next;
+22        }
+23        odd.next = evenHead;
+24        return head;
+25    }
+26}
