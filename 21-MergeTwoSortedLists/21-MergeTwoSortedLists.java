@@ -1,4 +1,4 @@
-// Last updated: 4/27/2026, 11:47:49 AM
+// Last updated: 6/5/2026, 11:18:20 AM
 1/**
 2 * Definition for singly-linked list.
 3 * public class ListNode {
@@ -9,39 +9,52 @@
 8 *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 9 * }
 10 */
-11class Solution 
-12{
-13    public ListNode mergeTwoLists(ListNode list1, ListNode list2) 
-14    {
-15        ListNode h1 = list1 , h2 = list2;
-16        ListNode dummy = new ListNode(0);
-17        ListNode temp = dummy;
-18        if(h1 == null && h2 == null) 
-19            return null;
-20        while(h1 != null || h2 != null)
-21        {
-22            if(h1 == null)
-23            {
-24                temp.next = h2;
-25                break;
-26            }
-27            else if(h2 == null)
-28            {
-29                temp.next = h1;
-30                break;
-31            }
-32            else if(h1.val <= h2.val)
-33            {
-34                temp.next = h1;
-35                h1 = h1.next;
-36            }
-37            else
-38            {
-39                temp.next = h2;
-40                h2 = h2.next;
-41            }
-42            temp = temp.next;
-43        }  
-44        return dummy.next;  
-45    }
-46}
+11class Solution {
+12    public ListNode merge(ListNode l1 , ListNode l2)
+13    {
+14        if(l1 == null && l2==null) return null;
+15        if(l1 == null) return l2;
+16        if(l2 == null) return l1;
+17
+18        ListNode dummy = new ListNode(0);
+19        ListNode temp = dummy;
+20
+21        while(l1 != null && l2 != null)
+22        {
+23            if(l1.val < l2.val)
+24            {
+25                temp.next = new ListNode(l1.val);
+26                temp = temp.next;
+27                l1 = l1.next;
+28            }
+29            else
+30            {
+31                temp.next = new ListNode(l2.val);
+32                temp = temp.next;
+33                l2 = l2.next;
+34            }
+35
+36        }
+37        if(l1 == null)
+38        {
+39            temp.next = l2;
+40         }
+41        else if(l2 == null)
+42         {
+43             temp.next = l1;
+44         }
+45        return dummy.next;
+46    }
+47    public ListNode mergeKLists(ListNode[] lists) {
+48        if(lists.length ==0)
+49        {
+50            return null;
+51        }
+52        ListNode res = lists[0];
+53        for(int i =1;i<lists.length;i++)
+54        {
+55            res = merge(res , lists[i]);
+56        }
+57        return res;
+58    }
+59}
