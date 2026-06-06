@@ -1,4 +1,4 @@
-// Last updated: 6/6/2026, 8:27:25 PM
+// Last updated: 6/6/2026, 8:28:44 PM
 1class Solution {
 2    public boolean isVowel(char ch)
 3    {
@@ -24,8 +24,9 @@
 23                    vow--;
 24                }
 25            }
-26            maxCount = Math.max(vow,maxCount);
-27        }
-28        return maxCount;
-29    }
-30}
+26            if(i >=k-1)
+27            maxCount = Math.max(vow,maxCount);
+28        }
+29        return maxCount;
+30    }
+31}
