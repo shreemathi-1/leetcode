@@ -1,4 +1,4 @@
-// Last updated: 6/4/2026, 9:42:57 PM
+// Last updated: 6/6/2026, 8:27:25 PM
 1class Solution {
 2    public boolean isVowel(char ch)
 3    {
@@ -8,25 +8,24 @@
 7        }
 8        return false;
 9    }
-10    public int maxVowels(String s, int k) {
-11        int vow =0,max =0;
-12        for(int i =0;i<s.length();i++)
-13        {
-14            if(isVowel(s.charAt(i)))
-15            {
-16                vow++;
-17            }
-18            if(i >=k)
-19            {
-20                if(isVowel(s.charAt(i-k)))
-21                {
-22                    vow-- ;
-23                }
-24            }
-25            max = Math.max(max,vow);
-26
+10    public int maxVowels(String s, int k) 
+11    {
+12        int vow = 0,maxCount=0;
+13        for(int i =0;i<s.length() ;i++)
+14        {
+15            if(isVowel(s.charAt(i)))
+16            {
+17                vow++ ;
+18            }
+19            if(i >=k)
+20            {
+21                if(isVowel(s.charAt(i-k)))
+22                {
+23                    vow--;
+24                }
+25            }
+26            maxCount = Math.max(vow,maxCount);
 27        }
-28        
-29        return max;
-30    }
-31}
+28        return maxCount;
+29    }
+30}
