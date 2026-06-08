@@ -1,4 +1,4 @@
-// Last updated: 3/23/2026, 2:03:07 PM
+// Last updated: 6/8/2026, 10:29:04 AM
 1/**
 2 * Definition for singly-linked list.
 3 * public class ListNode {
@@ -11,13 +11,13 @@
 10 */
 11class Solution {
 12    public ListNode reverseList(ListNode head) {
-13        ListNode cur= head,prev = null,next = null;
-14        while(cur!=null)
+13        ListNode cur = head , prev = null, next = null;
+14        while(cur != null)
 15        {
 16            next = cur.next;
 17            cur.next = prev;
-18            prev = cur;
-19            cur= next;
+18            prev = cur ;
+19            cur = next;
 20        }
 21        return prev;
 22    }
