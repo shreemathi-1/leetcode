@@ -1,32 +1,34 @@
-// Last updated: 7/8/2026, 11:33:49 PM
+// Last updated: 7/8/2026, 11:58:48 PM
 1class Solution {
-2    public boolean isVowel(char ch)
-3    {
-4        if(ch == 'a' || ch =='e' || ch =='i' || ch=='o' || ch =='u')
-5        {
-6            return true;
-7        }
-8        return false;
-9    }
-10    public int maxVowels(String s, int k) 
-11    {
-12        int left = 0, vowCount =0, maxCount=0;
-13        for(int r =0;r<s.length();r++)
-14        {
-15            if( isVowel(s.charAt(r)))
-16            {
-17                vowCount++;
-18            }
-19            if(r - left + 1 == k)
-20            {
-21                maxCount = Math.max(maxCount, vowCount);
-22                if(isVowel(s.charAt(left)))
-23                {
-24                    vowCount--;
-25                }
-26                left++;
-27            }
-28        }
-29    return maxCount;
-30    }
-31}
+2    public int countGoodSubstrings(String s) {
+3
+4        int left = 0;
+5        int k = 3;
+6        int count = 0;
+7
+8        HashMap<Character,Integer> map = new HashMap<>();
+9
+10        for(int r = 0; r < s.length(); r++) {
+11
+12            char ch = s.charAt(r);
+13            map.put(ch, map.getOrDefault(ch,0)+1);
+14
+15            if(r - left + 1 == k){
+16
+17                if(map.size() == k)
+18                    count++;
+19
+20                char leftChar = s.charAt(left);
+21
+22                map.put(leftChar, map.get(leftChar)-1);
+23
+24                if(map.get(leftChar) == 0)
+25                    map.remove(leftChar);
+26
+27                left++;
+28            }
+29        }
+30
+31        return count;
+32    }
+33}
