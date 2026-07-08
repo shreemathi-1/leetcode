@@ -1,8 +1,8 @@
-// Last updated: 6/6/2026, 8:28:44 PM
+// Last updated: 7/8/2026, 11:33:49 PM
 1class Solution {
 2    public boolean isVowel(char ch)
 3    {
-4        if(ch == 'a' ||ch == 'e' ||ch == 'i' ||ch == 'o' ||ch == 'u' )
+4        if(ch == 'a' || ch =='e' || ch =='i' || ch=='o' || ch =='u')
 5        {
 6            return true;
 7        }
@@ -10,23 +10,23 @@
 9    }
 10    public int maxVowels(String s, int k) 
 11    {
-12        int vow = 0,maxCount=0;
-13        for(int i =0;i<s.length() ;i++)
+12        int left = 0, vowCount =0, maxCount=0;
+13        for(int r =0;r<s.length();r++)
 14        {
-15            if(isVowel(s.charAt(i)))
+15            if( isVowel(s.charAt(r)))
 16            {
-17                vow++ ;
+17                vowCount++;
 18            }
-19            if(i >=k)
+19            if(r - left + 1 == k)
 20            {
-21                if(isVowel(s.charAt(i-k)))
-22                {
-23                    vow--;
-24                }
-25            }
-26            if(i >=k-1)
-27            maxCount = Math.max(vow,maxCount);
+21                maxCount = Math.max(maxCount, vowCount);
+22                if(isVowel(s.charAt(left)))
+23                {
+24                    vowCount--;
+25                }
+26                left++;
+27            }
 28        }
-29        return maxCount;
+29    return maxCount;
 30    }
 31}
