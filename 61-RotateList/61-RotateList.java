@@ -1,47 +1,34 @@
-// Last updated: 5/11/2026, 9:13:16 AM
-1/**
-2 * Definition for singly-linked list.
-3 * public class ListNode {
-4 *     int val;
-5 *     ListNode next;
-6 *     ListNode() {}
-7 *     ListNode(int val) { this.val = val; }
-8 *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-9 * }
-10 */
-11class Solution 
-12{
-13    public ListNode rotateRight(ListNode head, int k) 
-14    {
-15        if(head == null || head.next == null)
-16        return head;
-17        int len = 0;
-18        ListNode temp = head;
-19        while(temp != null)
-20        {
-21            len++;
-22            temp = temp.next;
+// Last updated: 7/12/2026, 10:36:31 PM
+1class Solution {
+2    public ListNode rotateRight(ListNode head, int k) {
+3        int len = 0;
+4        
+5        // 1. Handle edge cases
+6        if (head == null || head.next == null) return head;
+7        
+8        // 2. Find the length and the original tail
+9        ListNode count = head;
+10        while (count.next != null) {
+11            len++;
+12            count = count.next;
+13        }
+14        len++; // Account for the final node
+15        
+16        // 3. Optimize k
+17        k = k % len;
+18        
+19        // 4. Locate the new tail
+20        ListNode p = head;
+21        for (int i = 0; i < (len - k - 1); ++i) {
+22            p = p.next;
 23        }
-24        k = k%len;
-25        if(k ==0) return head;
-26        int move = len - k;
-27        ListNode temp2 = head;
-28        int c =0;
-29        while(c < move-1)
-30        {
-31            c++;
-32            temp2 = temp2.next;
-33        }
-34        
-35        ListNode newHead = temp2.next;
-36        temp2.next = null;
-37        ListNode temp3 = newHead;
-38        while(temp3.next != null)
-39        {
-40            temp3 = temp3.next;
-41        }
-42        
-43        temp3.next = head;
-44        return newHead;
-45    }
-46}
+24        
+25        // 5 & 6. Form the circle, set new head, and break it
+26        count.next = head;
+27        head = p.next;
+28        p.next = null;
+29        
+30        // 7. Return the new rotated list
+31        return head;
+32    }
+33}
