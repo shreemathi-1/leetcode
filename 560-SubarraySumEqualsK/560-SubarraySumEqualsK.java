@@ -1,20 +1,21 @@
-// Last updated: 7/2/2026, 6:19:32 PM
-1class Solution {
-2    public int subarraySum(int[] nums, int k) {
-3        HashMap<Integer,Integer> map = new HashMap<>();
-4        int count =0;
-5        int prefSum =0 , rem = 0;
-6        map.put(0,1);
-7        for(int i =0;i<nums.length;i++)
-8        {
-9            prefSum += nums[i];
-10            rem = prefSum - k;
-11            if(map.containsKey(rem))
-12            {
-13                count += map.get(rem);
-14            }
-15            map.put(prefSum , map.getOrDefault(prefSum , 0) +1 );
-16        }
-17        return count;
-18    }
-19}
+// Last updated: 7/22/2026, 10:26:04 PM
+1class Solution 
+2{
+3    public int subarraySum(int[] nums, int k) 
+4    {
+5        int count =0;
+6        int sum = 0;
+7        HashMap<Integer,Integer> map = new HashMap<>();
+8        map.put(0,1);
+9        for(int i = 0;i<nums.length;i++)
+10        {
+11            sum += nums[i];
+12            if(map.containsKey(sum-k) )
+13            {
+14                count += map.get(sum-k);
+15            }
+16            map.put(sum, map.getOrDefault(sum,0)+1);
+17        }
+18        return count;
+19    }
+20}
