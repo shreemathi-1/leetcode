@@ -1,4 +1,4 @@
-// Last updated: 8/1/2026, 10:52:02 PM
+// Last updated: 8/1/2026, 10:53:17 PM
 1class Solution {
 2    public boolean predictTheWinner(int[] nums) {
 3        int n = nums.length;
