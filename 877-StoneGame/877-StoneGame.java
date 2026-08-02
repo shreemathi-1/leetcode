@@ -1,5 +1,5 @@
-// Last updated: 8/2/2026, 8:22:34 PM
-1//translated by AI
+// Last updated: 8/2/2026, 8:22:40 PM
+1
 2class Solution {
 3    public boolean stoneGame(int[] piles) {
 4        int n = piles.length;
