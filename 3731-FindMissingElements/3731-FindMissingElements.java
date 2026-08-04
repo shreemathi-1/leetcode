@@ -1,4 +1,4 @@
-// Last updated: 8/4/2026, 2:04:33 PM
+// Last updated: 8/4/2026, 2:05:58 PM
 1class Solution {
 2    public List<Integer> findMissingElements(int[] nums) {
 3        ArrayList<Integer> res = new ArrayList<>();
@@ -13,7 +13,7 @@
 12            if(nums[i] < min) 
 13                min = nums[i];   
 14        }
-15        for(int i = min;i <= max;i++)
+15        for(int i = min+1 ;i < max;i++)
 16        {
 17            if(!set.contains(i))
 18            {
