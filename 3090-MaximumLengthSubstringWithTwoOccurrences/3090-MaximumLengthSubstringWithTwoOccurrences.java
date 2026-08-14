@@ -1,18 +1,23 @@
-// Last updated: 8/14/2026, 12:00:22 PM
+// Last updated: 8/14/2026, 10:46:14 PM
 1class Solution {
-2    public boolean isGood(int[] nums) {
-3        int n = 0;
-4        for (int x : nums) n = Math.max(n, x);
-5
-6        if(nums.length != n + 1) return false;
-7
-8        int[] freq = new int[n + 1];
-9        for (int x : nums) freq[x]++;
-10
-11        for (int v = 1; v < n; v++) {
-12            if (freq[v] != 1) return false;
-13        }
-14
-15        return freq[n] == 2;
-16    }
-17}
+2    public int maximumLengthSubstring(String s) {
+3        int left =0;
+4        int maxLen = 0;
+5        HashMap<Character,Integer> map = new HashMap<>();
+6        for(int r =0;r<s.length();r++)
+7        {
+8            map.put(s.charAt(r), map.getOrDefault(s.charAt(r),0)+1);
+9            while(map.get(s.charAt(r)) >2)
+10            {
+11                map.put(s.charAt(left), map.get(s.charAt(left))-1);
+12                if(map.get(s.charAt(left)) == 0)
+13                {
+14                    map.remove(s.charAt(left));                
+15                }
+16                left++;
+17            }
+18            maxLen = Math.max(maxLen,r - left +1);
+19        }
+20        return maxLen;
+21    }
+22}
