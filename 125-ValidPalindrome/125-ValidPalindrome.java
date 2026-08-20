@@ -1,4 +1,4 @@
-// Last updated: 8/20/2026, 11:02:20 PM
+// Last updated: 8/20/2026, 11:07:42 PM
 1class Solution {
 2    public boolean isPalindrome(String s) {
 3        int left = 0, right = s.length()-1;
