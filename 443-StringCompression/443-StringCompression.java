@@ -1,4 +1,4 @@
-// Last updated: 8/21/2026, 12:17:56 AM
+// Last updated: 8/21/2026, 12:18:20 AM
 1class Solution {
 2    public int compress(char[] chars) {
 3        int ind =0 ;
