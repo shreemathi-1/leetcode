@@ -1,22 +1,24 @@
-// Last updated: 2/17/2026, 7:20:46 PM
-1class Solution 
-2{
-3    public boolean isPalindrome(String s)
-4     {
-5        StringBuilder sb = new StringBuilder();
-6        s = s.toLowerCase() ;
-7        for(int i = 0;i < s.length();i++ )
-8        {
-9            if(Character.isLetterOrDigit(s.charAt(i)) )
-10            {
-11                sb.append(s.charAt(i) );
-12            }
-13        }
-14       
-15        if(sb.toString().equals( sb.reverse().toString()) )
-16        {
-17            return true;
-18        }
-19        return false;
-20    }
-21}
+// Last updated: 8/20/2026, 4:26:50 PM
+1class Solution {
+2    public boolean isPalindrome(String s) {
+3        int left = 0, right = s.length()-1;
+4        while(left < right)
+5        {
+6            while( left < right && !Character.isLetterOrDigit(s.charAt(left)))
+7            {
+8                left++;
+9            }
+10            while( left < right && !Character.isLetterOrDigit(s.charAt(right)))
+11            {
+12                right--;
+13            }
+14            if(Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right)))
+15            {
+16                return false;
+17            }
+18            left++;
+19            right--;
+20        }
+21        return true;
+22    }
+23}
